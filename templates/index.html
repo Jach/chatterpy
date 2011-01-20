@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Chatterpy Chat Box</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdn.socket.io/stable/socket.io.js"></script>
+<script>
+  window.onload = function () {
+    var socket = new io.Socket("localhost", {port: 8080})
+    socket.on('connect', function () {
+      socket.send('New participant joined')
+    })
+
+    socket.on('message', function(data) {
+      $('#chat').append('<div>' + data + '</div>')
+    })
+
+    socket.on('disconnect', function() {
+    })
+
+    $('#chatform').submit(function (event) {
+      var line = $('#chatform [type=text]').val()
+      $('#chatform [type=text]').val('')
+      s.send(line)
+      return false
+    })
+  }
+</script>
+</head>
+<body>
+  <h3>Chat test</h3>
+  <div id="chat" style="width: 60em; height: 20em; overflow: auto; border: 1px solid black">
+  </div>
+  <form id="chatform">
+    <input type="text" />
+    <input type="submit" />
+  </form>
+</body>
+</html>
