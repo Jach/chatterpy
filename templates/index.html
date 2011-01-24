@@ -7,7 +7,7 @@
 <script type="text/javascript" src="http://cdn.socket.io/stable/socket.io.js"></script>
 <script>
   window.onload = function () {
-    var socket = new io.Socket("localhost", {port: 8888})
+    var socket = new io.Socket("localhost", {port: 8080})
     socket.on('connect', function () {
       socket.send('New participant joined')
     })
@@ -17,15 +17,12 @@
     })
 
     socket.on('disconnect', function() {
-      socket.connect(); // reconnect
     })
 
-    socket.connect();
-
-    $('#chatform').submit(function (ev) {
+    $('#chatform').submit(function (event) {
       var line = $('#chatform [type=text]').val()
       $('#chatform [type=text]').val('')
-      socket.send(line)
+      s.send(line)
       return false
     })
   }
