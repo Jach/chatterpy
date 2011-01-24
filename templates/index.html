@@ -2,35 +2,61 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Chatterpy Chat Box</title>
+<title>Chatterpy Chat</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdn.socket.io/stable/socket.io.js"></script>
-<script>
-  window.onload = function () {
-    var socket = new io.Socket("localhost", {port: 8080})
-    socket.on('connect', function () {
-      socket.send('New participant joined')
-    })
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<script type="text/javascript">
+var username = '{{ name }}'
 
-    socket.on('message', function(data) {
-      $('#chat').append('<div>' + data + '</div>')
-    })
+var render_ui = function() {
+  $('a', '.send_message').button()
+  $('a', '.send_message').click(post_message)
+}
 
-    socket.on('disconnect', function() {
-    })
-
-    $('#chatform').submit(function (event) {
-      var line = $('#chatform [type=text]').val()
-      $('#chatform [type=text]').val('')
-      s.send(line)
-      return false
-    })
+$(function () {
+  render_ui()
+  $.post('{{ base_url }}/check/name/', {username: username},
+    function(r) {
+      if (r.success) {
+        start_chat()
+      } else {
+        login_prompt()
+      }
+    }, 'json')
   }
+)
+
+var login_prompt = function() {
+
+}
+
+var start_chat = function() {
+
+}
+
+var post_message = function() {
+  $.post('{{ base_url }}/post/', {color: '000000', message: 'hello'},
+    function(r) {
+      if (!r.success) {
+      }
+    }, 'json')
+}
+
+var last_message_id = -1
+var check_messages = function() {
+  $.post('{{ base_url }}/check_messages/', {last_id: last_message_id},
+    function(r) {
+      // r.messages
+    }, 'json')
+}
+
 </script>
 </head>
 <body>
-  <h3>Chat test</h3>
-  <noscript><h1>Please allow scripts on socket.io and google.com</h1></noscript>
+  <noscript><h1>Turn your scripts on, foo.</h1></noscript>
+
+  <a href="#send" class="send_message">Send</a><br />
+
   <div id="chat" style="width: 60em; height: 20em; overflow: auto; border: 1px solid black">
   </div>
   <form id="chatform">

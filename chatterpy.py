@@ -38,6 +38,8 @@ if 'DB_HAS_LOADED' not in globals() or not DB_HAS_LOADED:
 def before_request():
   g.db = connect_db()
   g.query_db = query_db
+  g.BASE_URL = BASE_URL
+  g.UPDATE_INTERVAL = UPDATE_INTERVAL
   g.sha1 = lambda x: sha1(x).hexdigest()
 
 @app.after_request

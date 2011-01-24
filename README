@@ -1,0 +1,43 @@
+This is yet another chat application called Chatterpy, made in Python using
+Flask as the microframework, jQuery being used on the front-end.
+
+------------
+REQUIREMENTS
+------------
+
+Python2.6 or 2.7.
+sqlite3
+flask ( http://flask.pocoo.org/ )
+
+-------
+LICENSE
+-------
+
+This project is licensed under the GNU Affero GPL version 3 or greater. What
+this means is that you will need to include a link to your source code
+to any web users, not just people you distribute the code to. (A link to this
+repository is satisfactory unless you make big changes, the link will be in 
+the about page.) If you find this to be too much of an inconvenience or a
+deal-breaker, contact me and I'd be happy to grant you an MIT License exception.
+If enough people make a request I'll probably just rerelease under the MIT.
+I just like the GPL for larger projects. Obviously consider (and I claim)
+config.py and schema.sql to be in the public domain, and any third party
+libraries to be covered by their respective licenses.
+
+Obligatory copyright notice:
+
+Copyright 2011 Kevin Secretan
+
+Chatterpy is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Chatterpy is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Chatterpy.  If not, see <http://www.gnu.org/licenses/>.
+
