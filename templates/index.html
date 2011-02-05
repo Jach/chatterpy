@@ -4,13 +4,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Chatterpy Chat</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+<!-- color picker -->
+<script type="text/javascript" src="/static/farbtastic.js"></script>
+<link rel="stylesheet" href="/static/farbtastic.css" type="text/css"></script>
+
+<link rel="stylesheet" href="/static/style.css" type="text/css" />
 <script type="text/javascript">
 var username = '{{ name }}'
 
 var render_ui = function() {
-  $('a', '.send_message').button()
-  $('a', '.send_message').click(post_message)
+  $('#sendformsubmit').height($('#messagetextholder').height())
+  $('#sendformsubmit').click(post_message)
+  $('#colorpickerholder').hide()
+  $('#colorpicker').farbtastic('#fontcolor')
+  $('#togglepicker').click(function(ev) {
+      $('#colorpickerholder').toggle(500)
+      $('html, body').animate({scrollTop: $('#togglepicker').offset().top }, 510)
+  })
 }
 
 $(function () {
@@ -34,8 +44,11 @@ var start_chat = function() {
 
 }
 
-var post_message = function() {
-  $.post('{{ base_url }}/post/', {color: '000000', message: 'hello'},
+var post_message = function(ev) {
+  ev.preventDefault()
+  $.post('{{ base_url }}/post/', {
+      color: $('#fontcolor').val(),
+      message: $('#messagetext').val()},
     function(r) {
       if (!r.success) {
       }
@@ -55,13 +68,33 @@ var check_messages = function() {
 <body>
   <noscript><h1>Turn your scripts on, foo.</h1></noscript>
 
-  <a href="#send" class="send_message">Send</a><br />
+  <div id="appcontainer">
 
-  <div id="chat" style="width: 60em; height: 20em; overflow: auto; border: 1px solid black">
+  <div id="usersbox">
   </div>
-  <form id="chatform">
-    <input type="text" />
-    <input type="submit" />
-  </form>
+
+  <div id="messagebox">
+  </div>
+
+  <div id="sendbox">
+    <form id="sendform">
+      <div id="messagetextholder">
+        <div id="username">
+          Bob
+        </div>
+        <textarea name="messagetext" id="messagetext" rows="3"></textarea>
+        <input type="submit" value="Send" id="sendformsubmit" />
+      </div>
+      <div id="colorpickerholder">
+        <div id="colorpicker"></div>
+        <input type="text" name="fontcolor" id="fontcolor" value="#000000" />
+      </div>
+    </form>
+    <br />
+    <button id="togglepicker">Font Color</button>
+  </div>
+
+  </div>
+
 </body>
 </html>

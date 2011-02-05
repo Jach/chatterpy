@@ -1,0 +1,92 @@
+html { height: 100%; }
+
+body {
+  margin: auto;
+  width: 94%;
+  height: 98%;
+
+  color: #000000;
+  background: #7aa357 url('/static/bg.png') center top repeat-x;
+
+  font: georgia,verdana
+}
+
+#appcontainer {
+  text-align: center;
+  width: 98%;
+  height: 98%;
+  margin-top: 1%;
+}
+
+#usersbox {
+  float: right;
+  width: 20%;
+  height: 85%;
+  background: #ac9200 url('/static/bg2.png') center top repeat-x;
+
+  /* nice rounded corners for less primitive browsers */
+  -moz-border-radius: 0 15px 15px 0;
+  -webkit-border-radius: 0 15px 15px 0;
+  -khtml-border-radius: 0 15px 15px 0;
+}
+
+#messagebox {
+  width: 80%;
+  height: 85%;
+  background: #ffedae;
+
+  /* nice rounded corners for less primitive browsers */
+  -moz-border-radius: 15px 0 0 15px;
+  -webkit-border-radius: 15px 0 0 15px;
+  -khtml-border-radius: 15px 0 0 15px;
+}
+
+#sendbox {
+  width: 100%;
+  margin-top: 1%;
+  padding-top: 1%;
+  margin-bottom: 1%;
+  background: #b9a775;
+  text-align: left;
+
+  /* nice rounded corners for less primitive browsers */
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -khtml-border-radius: 15px;
+}
+
+#messagetextholder {
+  height: 100%;
+  position: relative;
+}
+
+#username {
+  font-weight: bolder;
+  font-size: 12px;
+  display: inline;
+  margin-left: 2%;
+  width: 7%;
+  height: 100%;
+  overflow: hidden;
+
+  /* requires parent to be relative */
+  position: absolute;
+  top: 10%;
+}
+
+#messagetext {
+  margin-left: 10%;
+  width: 80%;
+}
+
+#sendformsubmit {
+  float: right;
+  margin-right: 2%;
+  background: #ffedae;
+}
+
+#togglepicker {
+  display: inline;
+  margin-left: 2%;
+  background-color: #ffedae;
+}

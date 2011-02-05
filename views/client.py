@@ -1,4 +1,4 @@
-from flask import Module
+from flask import Module, jsonify
 from flask import request, session, g, redirect, url_for, abort, render_template
 
 client = Module(__name__, url_prefix='')
@@ -11,7 +11,7 @@ def home():
   return render_template('index.html', name=n, base_url=g.BASE_URL,
       update_interval=g.UPDATE_INTERVAL)
 
-@client.route('/check/name', methods=['POST'])
+@client.route('/check/name/', methods=['POST'])
 def check_name():
   '''Checks to see if a person claiming to be someone really is
   that someone.'''
@@ -47,6 +47,12 @@ def post_message():
     return jsonify({'success': False})
   q = '''insert into messages (color, speaker, message, sent_at) VALUES
         (?, ?, ?, datetime('now'))'''
+  try:
+    color = min(int(request.form['color'][1:], 16), 0xffffff)
+  except ValueError:
+    color = 0
+  finally:
+    color = hex(color)
   g.db.cursor().execute(q,
-      (request.form['color'], session['username'], request.form['message']))
+      (color, session['username'], request.form['message']))
   return jsonify({'success': True})
