@@ -9,7 +9,7 @@ def home():
   if 'username' in session:
     n = escape(session['username'])
   return render_template('index.html', name=n, base_url=g.BASE_URL,
-      update_interval=UPDATE_INTERVAL)
+      update_interval=g.UPDATE_INTERVAL)
 
 @client.route('/check/name', methods=['POST'])
 def check_name():
@@ -45,8 +45,8 @@ def check_messages():
 def post_message():
   if 'username' not in session:
     return jsonify({'success': False})
-  q = "insert into messages (color, speaker, message, sent_at) VALUES
-        (?, ?, ?, datetime('now'))"
+  q = '''insert into messages (color, speaker, message, sent_at) VALUES
+        (?, ?, ?, datetime('now'))'''
   g.db.cursor().execute(q,
       (request.form['color'], session['username'], request.form['message']))
   return jsonify({'success': True})

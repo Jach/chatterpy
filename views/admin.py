@@ -1,7 +1,7 @@
 from flask import Module, jsonify
 from flask import request, session, g, redirect, url_for, abort, render_template
 
-admin = Module(__name__, url_prefix='admin')
+admin = Module(__name__, url_prefix='/admin')
 
 @admin.route('/')
 def admin_index():
