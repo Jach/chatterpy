@@ -22,7 +22,7 @@ body {
   float: right;
   width: 20%;
   height: 85%;
-  background: #ac9200 url('/static/bg2.png') center top repeat-x;
+  background: #d6b84f url('/static/bg2.png') left top repeat-y;
 
   /* nice rounded corners for less primitive browsers */
   -moz-border-radius: 0 15px 15px 0;
