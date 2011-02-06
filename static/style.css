@@ -34,11 +34,19 @@ body {
   width: 80%;
   height: 85%;
   background: #ffedae;
+  text-align: left;
+  overflow: auto;
 
   /* nice rounded corners for less primitive browsers */
   -moz-border-radius: 15px 0 0 15px;
   -webkit-border-radius: 15px 0 0 15px;
   -khtml-border-radius: 15px 0 0 15px;
+}
+
+.message {
+  padding-left: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 #sendbox {
@@ -89,4 +97,38 @@ body {
   display: inline;
   margin-left: 2%;
   background-color: #ffedae;
+}
+
+#loginbox {
+  display: none;
+  background: white;
+  position: fixed;
+  _position: absolute; /* IE 6 hack apparently */
+  width: 50%;
+  height: 20%;
+  z-index: 2;
+  padding: 1%;
+  text-align: center;
+
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -khtml-border-radius: 15px;
+}
+
+#loginboxbackground {
+  display: none;
+  position: fixed;
+  _position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000000;
+  z-index: 1;
+}
+
+
+
+.error {
+  color: red;
 }

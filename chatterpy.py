@@ -38,6 +38,7 @@ if 'DB_HAS_LOADED' not in globals() or not DB_HAS_LOADED:
 def before_request():
   g.db = connect_db()
   g.query_db = query_db
+  g.insert_db = insert_db
   g.BASE_URL = BASE_URL
   g.UPDATE_INTERVAL = UPDATE_INTERVAL
   g.sha1 = lambda x: sha1(x).hexdigest()
@@ -47,11 +48,18 @@ def after_request(response):
   g.db.close()
   return response
 
-def query_db(query, args=(), one=False):
+def query_db(query, args=None, one=False):
+  if args is None: args = ()
   cur = g.db.execute(query, args)
   rv = [dict((cur.description[idx][0], value)
              for idx, value in enumerate(row)) for row in cur.fetchall()]
   return (rv[0] if rv else None) if one else rv
+
+def insert_db(query, args=None, hold_commit=False):
+  if args is None: args = ()
+  g.db.cursor().execute(query, args)
+  if not hold_commit:
+    g.db.commit()
 
 if __name__ == '__main__':
   if DEBUG:
