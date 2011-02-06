@@ -1,5 +1,5 @@
 BASE_URL = '' # change if you don't want /
-DATABASE = './chatterpy_settings.db'
+DATABASE = './chatterpy_data.db'
 DEBUG = True # change to false on deploy
 SECRET_KEY = 'CHANGEME'
 # For the DB
