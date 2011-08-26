@@ -96,7 +96,8 @@ var post_message = function(ev) {
  */
 var add_new_messages = function(r, force_scroll) {
   var should_scroll = force_scroll ||
-    ($('#messagebox')[0].scrollHeight == $('#messagebox').scrollTop());
+    ($('#messagebox')[0].scrollHeight - $('#messagebox').scrollTop() ==
+     $('#messagebox').outerHeight());
   $.each(r.messages, add_message)
   if (should_scroll) {
     scroll();
