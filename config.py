@@ -8,4 +8,3 @@ PASSWORD = ''
 
 TIMEOUT = 60*1 # if no contact for # minutes, remove from active users
 UPDATE_INTERVAL = 5 # check for new messages every # secs
-DB_HAS_LOADED = True
